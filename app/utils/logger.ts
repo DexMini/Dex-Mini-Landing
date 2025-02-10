@@ -1,77 +1,35 @@
-/**
- * Logger utility for consistent application logging
- * Uses singleton pattern to ensure single instance
- */
-
-type LogLevel = "info" | "warn" | "error"
-type LogCategory = "performance" | "navigation" | "error"
-
-interface LogEntry {
-  timestamp: string
-  level: LogLevel
-  category: LogCategory
-  message: string
-  details?: Record<string, any>
-}
+type LogLevel = "info" | "warn" | "error" | "debug"
 
 class Logger {
-  private static instance: Logger
-  private logs: LogEntry[] = []
-  private readonly MAX_LOGS = 1000
+  private isDevelopment = process.env.NODE_ENV === "development"
 
-  static getInstance(): Logger {
-    if (!Logger.instance) {
-      Logger.instance = new Logger()
-    }
-    return Logger.instance
+  private formatMessage(level: LogLevel, message: string, meta?: any) {
+    const timestamp = new Date().toISOString()
+    return `[${timestamp}] [${level.toUpperCase()}] ${message} ${meta ? JSON.stringify(meta) : ""
+      }`
   }
 
-  private formatMessage(
-    level: LogLevel,
-    category: LogCategory,
-    message: string,
-    details?: Record<string, any>,
-  ): string {
-    return `[${level.toUpperCase()}][${category}] ${message}${details ? ` | ${JSON.stringify(details)}` : ""}`
-  }
-
-  private log(level: LogLevel, category: LogCategory, message: string, details?: Record<string, any>) {
-    const entry: LogEntry = {
-      timestamp: new Date().toISOString(),
-      level,
-      category,
-      message,
-      details,
-    }
-
-    this.logs.push(entry)
-    if (this.logs.length > this.MAX_LOGS) {
-      this.logs.shift()
-    }
-
-    // Only log in development
-    if (process.env.NODE_ENV === "development") {
-      const formattedMessage = this.formatMessage(level, category, message, details)
-      console[level](formattedMessage)
+  info(message: string, meta?: any) {
+    if (this.isDevelopment) {
+      console.log(this.formatMessage("info", message, meta))
     }
   }
 
-  info(category: LogCategory, message: string, details?: Record<string, any>) {
-    this.log("info", category, message, details)
+  warn(message: string, meta?: any) {
+    if (this.isDevelopment) {
+      console.warn(this.formatMessage("warn", message, meta))
+    }
   }
 
-  warn(category: LogCategory, message: string, details?: Record<string, any>) {
-    this.log("warn", category, message, details)
+  error(message: string, meta?: any) {
+    console.error(this.formatMessage("error", message, meta))
   }
 
-  error(category: LogCategory, message: string, details?: Record<string, any>) {
-    this.log("error", category, message, details)
-  }
-
-  getLogs() {
-    return this.logs
+  debug(message: string, meta?: any) {
+    if (this.isDevelopment) {
+      console.debug(this.formatMessage("debug", message, meta))
+    }
   }
 }
 
-export const logger = Logger.getInstance()
-
+export const logger = new Logger() 

@@ -8,9 +8,10 @@ const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL
 export const baseMetadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "Dex Mini - AI-Powered DeFi Liquidity Management Platform",
-    template: "%s | Dex Mini - Institutional-Grade DeFi",
+    default: "Dex Mini - Discover and Invest in DeFi Yields",
+    template: "%s | Dex Mini - Discover and Invest in DeFi Yields",
   },
+  description: "Dex Mini is a platform for discovering and investing in DeFi yields. We offer a range of yield-generating strategies across multiple chains, including Ethereum, Avalanche, and Binance Smart Chain.",
   // ... rest remains the same
 }
 

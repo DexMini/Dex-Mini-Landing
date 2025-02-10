@@ -7,9 +7,9 @@ import { COMPANY_NAME } from "@/config/constants"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Dex Mini - AI-Powered DeFi Liquidity Management Platform",
+  title: "Dex Mini - Discover and Invest in DeFi Yields",
   description:
-    "Unify fragmented liquidity across blockchains with AI-powered trading strategies and institutional-grade security.",
+    "Discover and Invest in DeFi Yields with Dex Mini. Our platform offers a range of yield-generating strategies across multiple chains, including Ethereum, Avalanche, and Binance Smart Chain.",
 }
 
 export default function Page() {
@@ -51,15 +51,15 @@ export default function Page() {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "SoftwareApplication",
+            "@type": "InvestmentPlatform",
             name: "Dex Mini",
             applicationCategory: "FinanceApplication",
             operatingSystem: "Web",
             description:
-              "An institutional-grade AI-driven framework that unifies fragmented liquidity across blockchains.",
+              "Discover and Invest in DeFi Yields with Dex Mini. Our platform offers a range of yield-generating strategies across multiple chains, including Ethereum, Avalanche, and Binance Smart Chain.",
             offers: {
               "@type": "Offer",
-              category: "DeFi Platform",
+              category: "Investment Platform",
             },
             author: {
               "@type": "Organization",
