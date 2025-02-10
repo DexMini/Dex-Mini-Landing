@@ -1,0 +1,15 @@
+{
+  "name": "Dex Mini - DeFi Investment Platform",
+  "short_name": "Dex Mini",
+  "icons": [
+    {
+      "src": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Dex%20Mini%20logo.jpg-zP9yXcv7xC2UTgiDyCv5WHvRyH3XaW.jpeg",
+      "sizes": "32x32",
+      "type": "image/jpeg"
+    }
+  ],
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "display": "standalone"
+}
+
